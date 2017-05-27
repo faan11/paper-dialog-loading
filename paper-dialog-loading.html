@@ -1,0 +1,151 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+
+<!--
+### paper-dialog-loading
+`<paper-dialog-loading>` is a material design box.
+    <paper-dialog-loading ></paper-dialog-loading>
+
+@demo demo/index.html
+-->
+
+
+<dom-module id="paper-dialog-loading">
+  <template>
+    <custom-style>
+    </custom-style>
+    <style>
+      :host {}
+      /*
+      #cropperZoneDialog {
+      padding-top: 0px !important;
+      margin-bottom: 0px !important;
+      }*/
+      paper-spinner {
+        --paper-spinner-layer-1-color: rgb(0,225,187);
+        --paper-spinner-layer-2-color: orange;
+        --paper-spinner-layer-3-color: #4ae0ba;
+        --paper-spinner-layer-4-color: #bdbdbd;
+      }
+
+      paper-dialog {
+        margin-top: 0px !important;
+        box-shadow: 0px 0px 0px 0px !important;
+        background-color:white !important;
+      }
+
+
+      @media only screen and (max-width: 768px) {
+        /*paper-dialog {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0;
+          margin: 0;
+          margin-bottom: 0px !important;
+          background-color: white !important;
+        }*/
+        /*.self-center {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }*/
+        /**
+          #cropperZoneDialog{
+            padding-top: auto;
+            box-shadow: none;
+            position: fixed;
+          }Desktop**/
+      }
+
+      .self-center {
+        margin: 0px !important;
+        padding: 20px !important;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .visible {
+        display: block;
+      }
+      .flex {
+        @apply --layout-horizontal;
+      }
+      #textLoading{
+        vertical-align: middle;
+        line-height: 30px;
+        padding-left:10px;
+      }
+    </style>
+
+    <paper-dialog id="loadingDialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+      <div class="self-center">
+
+        <div class="container flex">
+          <div>
+            <paper-spinner active >
+            </paper-spinner>
+          </div>
+          <div id="textLoading" class$="{{_state}}">
+
+          </div>
+        </div>
+
+      </div>
+    </paper-dialog>
+
+  </template>
+  <script>
+    Polymer({
+
+      is: 'paper-dialog-loading',
+
+      properties: {
+        _state: {
+          type: String,
+          value: "hidden",
+          notify: true
+        },
+        withText: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          observer: "_changeWithText"
+        },
+        text: {
+          type: String,
+          value: "",
+          notify: true,
+          observer: "_changeText"
+        }
+      },
+      _changeWithText: function(newValue, oldValue) {
+        this._state = newValue ? "visible" : "hidden";
+      },
+      _changeText: function(newValue, oldValue) {
+        this.$.textLoading.innerText = newValue;
+      },
+      open: function() {
+        this.$.loadingDialog.open();
+      },
+      close: function() {
+        this.$.loadingDialog.close();
+      },
+
+
+
+    });
+  </script>
+
+</dom-module>

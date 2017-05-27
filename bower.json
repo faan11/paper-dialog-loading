@@ -1,0 +1,22 @@
+{
+  "name": "paper-dialog-loading",
+  "version": "1.0.0",
+  "description": "A paper-dialog for loading phase. (Polymer)",
+  "authors": [
+    "Faan11"
+  ],
+  "main": "paper-dialog-loading.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer",
+    "paper-dialog": "PolymerElements/paper-dialog",
+
+    "paper-spinner": "PolymerElements/paper-spinner",
+    "paper-button": "PolymerElements/paper-button"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
+    "web-component-tester": "",
+    "webcomponentsjs": "webcomponents/webcomponentsjs"
+  }
+}
